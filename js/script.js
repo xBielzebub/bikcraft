@@ -9,8 +9,6 @@ function ativarLink(link) {
   if (url.includes(href)) {
     link.classList.add("ativo");
   }
-  console.log(url);
-  console.log(href);
 }
 
 links.forEach(ativarLink);
@@ -24,7 +22,28 @@ function ativarProduto(parametro) {
   if (elemento) {
     elemento.checked = true;
   }
-  console.log(elemento);
 }
 
 parametros.forEach(ativarProduto);
+
+// Perguntas frequentes
+
+const perguntas = document.querySelectorAll(".perguntas button");
+
+function ativarPergunta(evento) {
+  const pergunta = event.currentTarget;
+  const controls = pergunta.getAttribute("aria-controls");
+  const resposta = document.getElementById(controls);
+
+  resposta.classList.toggle("ativa");
+  const ativa = resposta.classList.contains("ativa");
+  pergunta.setAttribute("aria-expanded", ativa);
+}
+
+function eventosPerguntas(pergunta) {
+  pergunta.addEventListener("click", ativarPergunta);
+}
+
+perguntas.forEach(eventosPerguntas);
+
+console.log(perguntas);
